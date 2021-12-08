@@ -33,8 +33,7 @@ const options: any = {
         const _user = await prisma.user.findFirst({
           where: {
             email: email,
-            password: password,
-            isActive: true
+            password: password
           },
           /*select: {
             id: true,
@@ -59,10 +58,8 @@ const options: any = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: 20,
-    //maxAge: 30 * 24 * 60 * 60,
-    //updateAge: 24 * 60 * 60,
-    updateAge: 10,
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
   },
   jwt: {
     secret: process.env.JWT_SECRET,
@@ -105,7 +102,7 @@ const options: any = {
 
       const _user = await prisma.user.findFirst({
         where: {
-          email: token.user.email,
+          id: token.user.id,
           password: token.user.password,
           isActive: true
         }
