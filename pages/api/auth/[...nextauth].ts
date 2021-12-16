@@ -13,6 +13,11 @@ const prisma = new PrismaClient()
   image: string
 };*/
 
+interface teste {
+  id: string
+  name: string
+};
+
 const options: any = {
   //adapter: PrismaAdapter(prisma),
   providers: [
@@ -24,8 +29,6 @@ const options: any = {
         password: { type: "password" },
       },
       async authorize(credentials) {
-
-        //console.log('--------> CHEGOU: ', credentials?.username);
 
         const email: any = credentials?.email
         const password: any = credentials?.password

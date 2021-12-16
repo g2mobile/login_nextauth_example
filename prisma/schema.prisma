@@ -24,3 +24,17 @@ model Post {
   id        Int      @id @default(autoincrement())
   title     String   @db.VarChar(255)
 }
+
+
+model Assunto {
+  id            String      @id @default(cuid())
+  name          String?
+  subassunto SubAssunto[]
+}
+
+model SubAssunto {
+  id            String      @id @default(cuid())
+  name          String?
+  assunto Assunto @relation(fields: [assuntoId], references: [id])
+  assuntoId String
+}
